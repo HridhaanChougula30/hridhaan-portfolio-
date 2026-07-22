@@ -703,6 +703,78 @@ body {
   border-radius: 40% 40% 50% 50%;
 }
 
+/* HRC Solar Sketch — sun with radial rays */
+.sketch-solar {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sketch-sun-core {
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--text-primary);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.sketch-sun-rays {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: solar-spin 12s linear infinite;
+}
+
+@keyframes solar-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.sketch-sun-rays::before,
+.sketch-sun-rays::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 0 0;
+  width: 1.5px;
+  height: 20px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+}
+
+.sketch-sun-rays::before {
+  transform: translateX(-50%) translateY(-100%) rotate(0deg) translateY(-28px);
+  box-shadow:
+    /* 8 evenly-spaced rays via repeated shadows */
+    0 0 0 0 transparent,
+    56px 0 0 0 transparent;
+}
+
+/* Use a multi-pseudo approach — individual ray divs via CSS */
+.sketch-solar::before {
+  content: '';
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border: 1px dashed var(--text-primary);
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+.sketch-solar::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 1px dashed var(--text-primary);
+  border-radius: 50%;
+  opacity: 0.25;
+}
+
 .project-info {
   padding: 2rem;
   display: flex;
